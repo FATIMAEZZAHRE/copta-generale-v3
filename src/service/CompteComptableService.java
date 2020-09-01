@@ -34,5 +34,13 @@ public class CompteComptableService {
         }
 
     }
+    public CompteComptable findByClass(String ClassComptable,ArrayList<CompteComptable> compteComptables){
+        for (int i = 0; i < compteComptables.size(); i++) {
+            CompteComptable CompteComptable = compteComptables.get(i);
+            if(CompteComptable.getCasseComptable().equals(ClassComptable)){
+                return CompteComptable;
+            }
+        }return null;
+    }
 
 }

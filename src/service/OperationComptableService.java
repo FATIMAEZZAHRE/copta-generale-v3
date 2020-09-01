@@ -1,5 +1,6 @@
 package service;
 
+import bean.CompteComptable;
 import bean.OperationComptable;
 import bean.TypeOperationComptable;
 import java.util.ArrayList;
@@ -15,12 +16,17 @@ import java.util.ArrayList;
  */
 public class OperationComptableService {
 
-    public ArrayList<OperationComptable> findByClasseComptable(String classeCompables, ArrayList<OperationComptable> operations) {
-        return null; // TO DO: oumaima
-    }
-
-    public ArrayList<OperationComptable> findByCompteComptable(String classeCompables, ArrayList<OperationComptable> operations) {
-        return null; // TO DO: oumaima
+    public ArrayList<OperationComptable> findByClasseComptable(String classeCompable, ArrayList<OperationComptable> operations) {
+        ArrayList<OperationComptable> operationsComptables=new ArrayList<OperationComptable>();
+        for (int i = 0; i < operationsComptables.size(); i++) {
+            OperationComptable OperationComptable = operationsComptables.get(i);
+            if(OperationComptable.getCompteCmptable().getCasseComptable().equals(classeCompable))
+            {
+            operationsComptables.add(OperationComptable);
+            }  
+        }return operationsComptables;
+        
+         //DONE BY: omaima
     }
 
     public OperationComptable findById(ArrayList<OperationComptable> operations, Long id) {
@@ -79,6 +85,17 @@ public class OperationComptableService {
 
     public int crediter(OperationComptable operationcomptable, ArrayList<OperationComptable> operations) {
         return exec(operationcomptable, TypeOperationComptable.CREDIT, operations);
+    }
+    public ArrayList<OperationComptable> findBySociete (String raisonSociale, ArrayList<OperationComptable> operations){
+        ArrayList<OperationComptable> societeOperations=new ArrayList<>();
+        for (int i = 0; i < operations.size(); i++) {
+            OperationComptable operationComptable = operations.get(i);
+            if(operationComptable.getSoiete().getRaisonSocial().equals(raisonSociale)){
+            societeOperations.add(operationComptable);
+            }
+            
+        }return societeOperations;//DONE BY:Omaima
+    
     }
 
 }

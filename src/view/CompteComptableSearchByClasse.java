@@ -8,6 +8,7 @@ package view;
 import bean.CompteComptable;
 import helper.CompteComptableHelper;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import service.CompteComptableService;
 
 /**
@@ -22,8 +23,9 @@ public class CompteComptableSearchByClasse extends javax.swing.JFrame {
     CompteComptable selected;
     
     private void initCompteComptables() {
-        compteComptables.add(new CompteComptable(7, "produit", "11", "1101"));
-        compteComptables.add(new CompteComptable(6, "produit", "15", "1151"));
+        compteComptables.add(new CompteComptable(7, "charge", "11", "6221"));
+        compteComptables.add(new CompteComptable(6, "charge", "15", "6111"));
+        compteComptables.add(new CompteComptable(6, "produit", "15", "7111"));
     }
     
     private void initHelper() {
@@ -143,12 +145,14 @@ public class CompteComptableSearchByClasse extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        CompteComptable comptecomptable = new CompteComptable();
-        
-        comptecomptable.setCasseComptable(jTextField3.getText());
-        int res = compteComptableService.add(comptecomptable, compteComptables);
-        if (res == 1) {
-            compteComptableHelper.add(comptecomptable);
+        CompteComptable CompteComptable=new CompteComptable();
+        String res="";
+        String classeComptable=jTextField3.getText();
+        CompteComptable=compteComptableService.findByClass(classeComptable, compteComptables);
+        if(CompteComptable!=null){
+        compteComptableHelper.add(CompteComptable);
+        }else{
+            JOptionPane.showMessageDialog(null,"Class comptable introuvable","erreur",JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
